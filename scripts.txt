@@ -1,0 +1,68 @@
+//create
+npm create vite@latest my-electron-app --template react
+cd my-electron-app
+
+// installing
+npm install
+npm install --save-dev electron electron-builder
+npm install --save-dev @electron/remote
+
+// running
+npm run dev
+npm run electron
+
+
+//build
+npm run build
+
+// Create a Desktop Shortcut 
+sudo vim /usr/share/applications/my-electron-app.desktop
+
+
+[Desktop Entry]
+Name=My Electron App
+Comment=A React + Electron App
+Exec=/home/yahiya/www/my-electron-app/dist/MyElectronApp-0.0.0.AppImage
+Icon=/home/yahiya/www/my-electron-app/icon.png
+Terminal=false
+Type=Application
+Categories=Utility;
+StartupNotify=true
+
+
+sudo chmod +x /usr/share/applications/my-electron-app.desktop
+
+
+// always open when boot
+
+mkdir -p ~/.config/autostart
+cp /usr/share/applications/my-electron-app.desktop ~/.config/autostart/
+
+
+//optional
+
+// add desktop app in opt
+sudo mv MyElectronApp-0.0.0.AppImage /opt/MyElectronApp
+
+// link this app to use/local to easy access
+sudo ln -s /opt/AuthApp-ElectronJS/AuthApp-ElectronJS /usr/local/bin/authapp-electronjs
+
+if you change app add then add this to your location
+
+[Desktop Entry]
+Name=My Electron App
+Comment=A React + Electron App
+Exec=/home/yahiya/www/my-electron-app/dist/MyElectronApp-0.0.0.AppImage
+Icon=/home/yahiya/www/my-electron-app/icon.png
+Terminal=false
+Type=Application
+Categories=Utility;
+StartupNotify=true
+
+
+
+
+
+
+
+
