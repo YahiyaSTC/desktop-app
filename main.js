@@ -17,7 +17,7 @@
 //       webSecurity: false,
 //     },
 //   });
-  
+
 //   const startURL = false ? `file://${path.join(__dirname, 'dist', 'index.html')}`
 //     : 'http://localhost:5173';
 
@@ -72,11 +72,17 @@ function createMainWindow() {
         height: 600,
         show: true, // Start hidden
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false,
+            webSecurity: false,
         }
     });
 
-    mainWindow.loadURL(`file://${path.join(__dirname, 'dist', 'index.html')}`);
+    const startURL = false ? `file://${path.join(__dirname, 'dist', 'index.html')}`
+        : 'http://localhost:5173';
+
+    mainWindow.loadURL(startURL);
+    // mainWindow.webContents.openDevTools(); // Open DevTools to check errors
 
     // Hide window instead of closing
     mainWindow.on('close', (event) => {
@@ -89,12 +95,14 @@ function createTray() {
     tray = new Tray(path.join(__dirname, 'icon.png'));
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Show App', click: () => mainWindow.show() },
-        { label: 'Exit', click: () => {
-            mainWindow.destroy();
-            app.quit();
-        }}
+        {
+            label: 'Exit', click: () => {
+                mainWindow.destroy();
+                app.quit();
+            }
+        }
     ]);
-    
+
     tray.setToolTip('My Electron App');
     tray.setContextMenu(contextMenu);
 
