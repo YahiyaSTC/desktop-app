@@ -44,7 +44,7 @@ function createMainWindow() {
         height: 600,
         show: true, // Start hidden
         webPreferences: {
-            nodeIntegration: true,
+            nodeIntegration: false,
             contextIsolation: false,
             webSecurity: false,
         }
